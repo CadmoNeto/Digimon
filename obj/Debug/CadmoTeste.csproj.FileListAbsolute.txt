@@ -11,3 +11,4 @@ C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Debug\CadmoTeste.CriarDigimon.resou
 C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Debug\CadmoTeste.Forms.Digimon.resources
 C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Debug\CadmoTeste.Forms.Login.resources
 C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Debug\CadmoTeste.Forms.Menu.resources
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Debug\CadmoTeste.Forms.ExibirDigimon.resources

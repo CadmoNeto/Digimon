@@ -12,9 +12,12 @@ namespace CadmoTeste.Forms
 {
     public partial class Digimon : Form
     {
-        public Digimon()
+        private int id { get; set; }
+        public Digimon(int id)
         {
             InitializeComponent();
+            this.id = id;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
     }
 }

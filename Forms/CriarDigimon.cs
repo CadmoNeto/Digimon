@@ -25,13 +25,12 @@ namespace CadmoTeste
         public CriarDigimon()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             especieCombo.DataSource = SQLCommands.RetornaDigimonEspecie();
             tipoCombo.DataSource = SQLCommands.RetornaDigimonTipo();
             estagioCombo.DataSource = SQLCommands.RetornaDigimonEstagio();
         }
-
-        
 
         private void especieCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -214,7 +213,9 @@ namespace CadmoTeste
         {
             try
             {
-                Digimon digimon = new Digimon(especieCombo.SelectedItem.ToString());
+                Digimon digimon = new Digimon(especieCombo.SelectedItem.ToString(), nomeBox.Text);
+
+                this.Close();
             }
             catch (ArgumentNullException ex)
             {

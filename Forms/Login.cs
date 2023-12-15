@@ -16,6 +16,7 @@ namespace CadmoTeste.Forms
         public Login()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void loginBt_Click(object sender, EventArgs e)
@@ -56,7 +57,7 @@ namespace CadmoTeste.Forms
                 Menu menu = new Menu();
                 menu.Show();
 
-                //this.Close();
+                this.Hide();
             }
         }
     }

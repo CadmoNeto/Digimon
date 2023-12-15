@@ -59,7 +59,7 @@ namespace CadmoTeste
             this.especieCombo.Location = new System.Drawing.Point(84, 38);
             this.especieCombo.Name = "especieCombo";
             this.especieCombo.Size = new System.Drawing.Size(143, 21);
-            this.especieCombo.TabIndex = 1;
+            this.especieCombo.TabIndex = 2;
             this.especieCombo.SelectedIndexChanged += new System.EventHandler(this.especieCombo_SelectedIndexChanged);
             // 
             // tipoLabel
@@ -88,7 +88,7 @@ namespace CadmoTeste
             this.createDigimonButton.Location = new System.Drawing.Point(233, 12);
             this.createDigimonButton.Name = "createDigimonButton";
             this.createDigimonButton.Size = new System.Drawing.Size(90, 99);
-            this.createDigimonButton.TabIndex = 4;
+            this.createDigimonButton.TabIndex = 5;
             this.createDigimonButton.Text = "Criar Digimon";
             this.createDigimonButton.UseVisualStyleBackColor = true;
             this.createDigimonButton.Click += new System.EventHandler(this.createDigimonButton_Click);
@@ -110,7 +110,7 @@ namespace CadmoTeste
             this.estagioCombo.Location = new System.Drawing.Point(84, 90);
             this.estagioCombo.Name = "estagioCombo";
             this.estagioCombo.Size = new System.Drawing.Size(143, 21);
-            this.estagioCombo.TabIndex = 6;
+            this.estagioCombo.TabIndex = 4;
             this.estagioCombo.SelectedIndexChanged += new System.EventHandler(this.estagioCombo_SelectedIndexChanged);
             // 
             // nome
@@ -128,7 +128,7 @@ namespace CadmoTeste
             this.nomeBox.MaxLength = 20;
             this.nomeBox.Name = "nomeBox";
             this.nomeBox.Size = new System.Drawing.Size(143, 20);
-            this.nomeBox.TabIndex = 8;
+            this.nomeBox.TabIndex = 1;
             // 
             // CriarDigimon
             // 

@@ -11,6 +11,7 @@ namespace CadmoTeste.Data
     {
         private static SqlConnection conexao = new SqlConnection("Data Source=(localdb)\\SQLConnection;Initial Catalog=cadmoDigimon;Integrated Security=True");
 
+        #region RETORNOS BÁSICOS
         public static List<string> RetornaDigimonEspecie()
         {
             try
@@ -33,7 +34,7 @@ namespace CadmoTeste.Data
 
                 return especies;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 conexao.Close();
                 return new List<string>
@@ -65,7 +66,7 @@ namespace CadmoTeste.Data
 
                 return tipos.OrderBy(tipo => tipo).ToList();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 conexao.Close();
                 return new List<string>
@@ -97,7 +98,7 @@ namespace CadmoTeste.Data
 
                 return estagios.OrderBy(estagio => Dados.RetornaEstagios().ToList().IndexOf(estagio)).ToList();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 conexao.Close();
                 return new List<string>
@@ -106,7 +107,9 @@ namespace CadmoTeste.Data
                 };
             }
         }
+        #endregion
 
+        #region JANELA CRIAR DIGIMON
         public static List<string> RetornaDadosEspecie(string especie)
         {
             try
@@ -129,7 +132,7 @@ namespace CadmoTeste.Data
 
                 return retorno;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 conexao.Close();
                 return new List<string>
@@ -158,7 +161,7 @@ namespace CadmoTeste.Data
                 conexao.Close();
                 return retorno;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 conexao.Close();
                 return new List<string>
@@ -203,7 +206,7 @@ namespace CadmoTeste.Data
 
                 return retorno;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 conexao.Close();
                 return new List<List<string>>
@@ -251,7 +254,7 @@ namespace CadmoTeste.Data
 
                 return retorno;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 conexao.Close();
                 return new List<List<string>>
@@ -264,6 +267,34 @@ namespace CadmoTeste.Data
             }
         }
 
+        public static int CriarDigimon(List<object> digimon)
+        {
+            try
+            {
+                conexao.Open();
+
+                SqlCommand cmd = new SqlCommand("INSERT INTO digimons (idUsuario, nome, especie, tipo, estagio, nivel) VALUES (@idUsuario, @nome, @especie, @tipo, @estagio, @nivel)", conexao);
+
+                cmd.Parameters.AddWithValue("@idUsuario", Dados.idUsuario);
+                cmd.Parameters.AddWithValue("@nome", digimon[0]);
+                cmd.Parameters.AddWithValue("@especie", digimon[1]);
+                cmd.Parameters.AddWithValue("@tipo", digimon[2]);
+                cmd.Parameters.AddWithValue("@estagio", digimon[3]);
+                cmd.Parameters.AddWithValue("@nivel", digimon[4]);
+
+                int id = Convert.ToInt32(cmd.ExecuteScalar());
+
+                conexao.Close();
+                return id;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
+        #region JANELA LOGIN
         public static List<string> Login(string usuario, string senha)
         {
             try
@@ -305,7 +336,7 @@ namespace CadmoTeste.Data
 
                 return new List<string> { usuario, administrador };
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 conexao.Close();
                 return new List<string>
@@ -347,7 +378,7 @@ namespace CadmoTeste.Data
 
                 return Login(usuario, senha);
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 conexao.Close();
                 return new List<string>
@@ -356,5 +387,41 @@ namespace CadmoTeste.Data
                 };
             }
         }
+        #endregion
+
+        #region JANELA EXIBIR DIGIMON
+        public static List<object> RetornaDigimonsUsuario()
+        {
+            int idUsuario = Dados.idUsuario;
+
+            try
+            {
+                List<int> ids = new List<int>();
+                List<string> nomes = new List<string>();
+
+                conexao.Open();
+
+                SqlCommand cmd = new SqlCommand($"SELECT id, nome, especie FROM digimons WHERE idUsuario = {idUsuario}", conexao);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ids.Add(int.Parse(reader["id"].ToString()));
+                    nomes.Add(reader["nome"].ToString() + "-" + reader["especie"].ToString());
+                }
+
+                conexao.Close();
+
+                return new List<object> { ids, nomes };
+            }
+            catch (SqlException ex)
+            {
+                return new List<object>
+                {
+                    $"Erro: {ex.Message}"
+                };
+            }
+        }
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CadmoTeste.Data;
+using CadmoTeste.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -12,12 +13,13 @@ namespace CadmoTeste
 {
     public class Digimon
     {
+        private string nome { get; set; }
         private string especie { get; set; }
         private string tipo { get; set; }
         private int nivel { get; set; }
         private string estagio { get; set; }
 
-        public Digimon(string especie)
+        public Digimon(string especie, string nome)
         {
             if (especie == null || especie == default || especie == string.Empty)
             {
@@ -26,18 +28,30 @@ namespace CadmoTeste
             else if (SQLCommands.RetornaDigimonEspecie().Contains(especie))
             {
                 List<string> retorno = SQLCommands.RetornaDadosEspecie(especie);
+                this.nome = nome;
                 this.especie = especie;
                 this.tipo = retorno[0];
-                this.nivel = int.Parse(retorno[1]);
-                this.estagio = retorno[2];
+                this.estagio = retorno[1];
+                this.nivel = int.Parse(retorno[2]);
 
                 MessageBox.Show($"Um {this.especie} foi criado com sucesso!\nSeguem os dados do Digimon:", "Sucesso!");
-                MessageBox.Show($"Espécie: {this.especie}\nTipo: {this.tipo}\nNível: {this.nivel}\nEstágio: {this.estagio}", $"Dados de {this.especie}");
+                MessageBox.Show($"Nome: {this.nome}\nEspécie: {this.especie}\nTipo: {this.tipo}\nNível: {this.nivel}\nEstágio: {this.estagio}", $"Dados de {this.especie}");
+
+                CadmoTeste.Forms.Digimon digimon = new CadmoTeste.Forms.Digimon(SQLCommands.CriarDigimon(RetornaDados()));
+                digimon.Show();
             }
             else
             {
                 throw new ArgumentException("Favor informar uma espécie de Digimon catalogada.");
             }
+        }
+
+        public List<object> RetornaDados()
+        {
+            return new List<object>
+            {
+                this.nome, this.especie, this.tipo, this.estagio, this.nivel
+            };
         }
     }
 }
