@@ -1,0 +1,14 @@
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\bin\Release\CadmoTeste.exe.config
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\bin\Release\CadmoTeste.exe
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\bin\Release\CadmoTeste.pdb
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.csproj.AssemblyReference.cache
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.CriarDigimon.resources
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.Forms.Digimon.resources
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.Forms.ExibirDigimon.resources
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.Forms.Login.resources
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.Forms.Menu.resources
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.Properties.Resources.resources
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.csproj.GenerateResource.cache
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.csproj.CoreCompileInputs.cache
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.exe
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.pdb
