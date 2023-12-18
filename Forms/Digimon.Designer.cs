@@ -159,6 +159,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Digimon";
             this.Text = "Digimon";
+            this.Load += new System.EventHandler(this.Digimon_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

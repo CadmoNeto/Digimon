@@ -128,9 +128,9 @@ namespace CadmoTeste
 
                     especieCombo.SelectedIndexChanged -= especieCombo_SelectedIndexChanged;
 
-                    List<List<string>> retorno = SQLCommands.SelecionaComboTipo(tipoSelecionado);
+                    List<string> retorno = SQLCommands.SelecionaTipoEstagio(tipoSelecionado, estagioSelecionado);
 
-                    especieCombo.DataSource = retorno[0];
+                    especieCombo.DataSource = retorno;
 
                     especieCombo.SelectedIndexChanged += especieCombo_SelectedIndexChanged;
 
@@ -183,11 +183,12 @@ namespace CadmoTeste
                 }
                 else if(!especieEscolhida && tipoEscolhido)
                 {
-                    List<List<string>> retorno = SQLCommands.SelecionaComboEstagio(estagioSelecionado);
+                    string tipoSelecionado = tipoCombo.SelectedItem as string;
+                    List<string> retorno = SQLCommands.SelecionaTipoEstagio(tipoSelecionado, estagioSelecionado);
 
                     especieCombo.SelectedIndexChanged -= especieCombo_SelectedIndexChanged;
 
-                    especieCombo.DataSource = retorno[0];
+                    especieCombo.DataSource = retorno;
 
                     especieCombo.SelectedIndexChanged += especieCombo_SelectedIndexChanged;
 

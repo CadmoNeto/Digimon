@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExibirDigimon));
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.escolherDigimonCombo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.exibirDigimonBt = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // escolherDigimonCombo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(81, 22);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 0;
+            this.escolherDigimonCombo.FormattingEnabled = true;
+            this.escolherDigimonCombo.Location = new System.Drawing.Point(81, 22);
+            this.escolherDigimonCombo.Name = "escolherDigimonCombo";
+            this.escolherDigimonCombo.Size = new System.Drawing.Size(121, 21);
+            this.escolherDigimonCombo.TabIndex = 0;
             // 
             // label1
             // 
@@ -71,7 +71,7 @@
             this.ClientSize = new System.Drawing.Size(224, 138);
             this.Controls.Add(this.exibirDigimonBt);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.escolherDigimonCombo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ExibirDigimon";
             this.Text = "Exibir Digimon";
@@ -82,7 +82,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox escolherDigimonCombo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button exibirDigimonBt;
     }

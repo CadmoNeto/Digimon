@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -219,6 +220,34 @@ namespace CadmoTeste.Data
             }
         }
 
+        public static List<string> SelecionaTipoEstagio(string tipo, string estagio)
+        {
+            try
+            {
+                List<string> retorno = new List<string>();
+                conexao.Open();
+
+                SqlCommand sql = new SqlCommand($"SELECT especie FROM dados_base_digimon WHERE tipo = '{tipo}' AND estagio = '{estagio}'", conexao);
+                SqlDataReader reader = sql.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    retorno.Add(reader["especie"].ToString());
+                }
+
+                conexao.Close();
+                return retorno;
+            }
+            catch (Exception ex)
+            {
+                conexao.Close();
+                return new List<string>
+                {
+                    $"Erro {ex.Message}"
+                };
+            }
+        }
+
         public static List<List<string>> SelecionaComboEstagio(string estagio)
         {
             try
@@ -407,7 +436,7 @@ namespace CadmoTeste.Data
                 while (reader.Read())
                 {
                     ids.Add(int.Parse(reader["id"].ToString()));
-                    nomes.Add(reader["nome"].ToString() + "-" + reader["especie"].ToString());
+                    nomes.Add(reader["nome"].ToString() + " - " + reader["especie"].ToString());
                 }
 
                 conexao.Close();
@@ -417,6 +446,38 @@ namespace CadmoTeste.Data
             catch (SqlException ex)
             {
                 return new List<object>
+                {
+                    $"Erro: {ex.Message}"
+                };
+            }
+        }
+        #endregion
+
+        #region JANELA DIGIMON
+        public static List<string> RetornaDigimonSelecionado(int id)
+        {
+            try
+            {
+                List<string> retorno = new List<string>();
+                conexao.Open();
+                SqlCommand cmd = new SqlCommand($"SELECT nome, especie, tipo, estagio, nivel FROM digimons WHERE id = {id}", conexao);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    retorno.Add(reader["nome"].ToString());
+                    retorno.Add(reader["especie"].ToString());
+                    retorno.Add(reader["tipo"].ToString());
+                    retorno.Add(reader["estagio"].ToString());
+                    retorno.Add(reader["nivel"].ToString());
+                }
+
+                conexao.Close();
+                return retorno;
+            }
+            catch (Exception ex)
+            {
+                return new List<string>
                 {
                     $"Erro: {ex.Message}"
                 };

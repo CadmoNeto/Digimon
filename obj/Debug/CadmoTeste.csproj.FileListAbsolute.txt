@@ -12,3 +12,17 @@ C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Debug\CadmoTeste.Forms.Digimon.reso
 C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Debug\CadmoTeste.Forms.Login.resources
 C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Debug\CadmoTeste.Forms.Menu.resources
 C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Debug\CadmoTeste.Forms.ExibirDigimon.resources
+D:\Desenvolvimento\Digimon\bin\Debug\CadmoTeste.exe.config
+D:\Desenvolvimento\Digimon\bin\Debug\CadmoTeste.exe
+D:\Desenvolvimento\Digimon\bin\Debug\CadmoTeste.pdb
+D:\Desenvolvimento\Digimon\obj\Debug\CadmoTeste.csproj.AssemblyReference.cache
+D:\Desenvolvimento\Digimon\obj\Debug\CadmoTeste.CriarDigimon.resources
+D:\Desenvolvimento\Digimon\obj\Debug\CadmoTeste.Forms.Digimon.resources
+D:\Desenvolvimento\Digimon\obj\Debug\CadmoTeste.Forms.ExibirDigimon.resources
+D:\Desenvolvimento\Digimon\obj\Debug\CadmoTeste.Forms.Login.resources
+D:\Desenvolvimento\Digimon\obj\Debug\CadmoTeste.Forms.Menu.resources
+D:\Desenvolvimento\Digimon\obj\Debug\CadmoTeste.Properties.Resources.resources
+D:\Desenvolvimento\Digimon\obj\Debug\CadmoTeste.csproj.GenerateResource.cache
+D:\Desenvolvimento\Digimon\obj\Debug\CadmoTeste.csproj.CoreCompileInputs.cache
+D:\Desenvolvimento\Digimon\obj\Debug\CadmoTeste.exe
+D:\Desenvolvimento\Digimon\obj\Debug\CadmoTeste.pdb

@@ -21,8 +21,6 @@ namespace CadmoTeste.Forms
         {
             InitializeComponent();
             this.Load += ExibirDigimon_Load;
-
-            comboBox1.DataSource = nomes;
         }
 
         private void ExibirDigimon_Load(object sender, EventArgs e)
@@ -31,11 +29,18 @@ namespace CadmoTeste.Forms
             ids = (List<int>)retorno[0];
             nomes = (List<string>)retorno[1];
             nomes.Insert(0, string.Empty);
+            escolherDigimonCombo.DataSource = nomes;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (escolherDigimonCombo.SelectedIndex == 0)
+            {
+                throw new Exception("Favor escolha um dos Digimon listados!");
+            }
 
+            Digimon digimon = new Digimon(escolherDigimonCombo.SelectedIndex);
+            digimon.ShowDialog();
         }
     }
 }

@@ -21,7 +21,11 @@ namespace CadmoTeste
 
         public Digimon(string especie, string nome)
         {
-            if (especie == null || especie == default || especie == string.Empty)
+            if (nome == null || nome == default || nome == string.Empty)
+            {
+                throw new ArgumentNullException("", "Favor informar algum nome para Digimon.");
+            }
+            else if (especie == null || especie == default || especie == string.Empty)
             {
                 throw new ArgumentNullException("", "Favor informar alguma espécie de Digimon.");
             }
