@@ -17,8 +17,9 @@ namespace CadmoTeste.Forms
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
-
+    
         private void loginBt_Click(object sender, EventArgs e)
         {
             string usuario = usuarioText.Text;

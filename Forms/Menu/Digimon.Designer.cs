@@ -39,6 +39,7 @@
             this.tipo = new System.Windows.Forms.Label();
             this.estagioDigimon = new System.Windows.Forms.Label();
             this.estagio = new System.Windows.Forms.Label();
+            this.levelUpBt = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // nome
@@ -141,11 +142,23 @@
             this.estagio.TabIndex = 8;
             this.estagio.Text = "Estágio:";
             // 
+            // levelUpBt
+            // 
+            this.levelUpBt.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.levelUpBt.Location = new System.Drawing.Point(25, 239);
+            this.levelUpBt.Name = "levelUpBt";
+            this.levelUpBt.Size = new System.Drawing.Size(107, 52);
+            this.levelUpBt.TabIndex = 10;
+            this.levelUpBt.Text = "Subir de Nível";
+            this.levelUpBt.UseVisualStyleBackColor = true;
+            this.levelUpBt.Click += new System.EventHandler(this.levelUpBt_Click);
+            // 
             // Digimon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(319, 274);
+            this.ClientSize = new System.Drawing.Size(319, 303);
+            this.Controls.Add(this.levelUpBt);
             this.Controls.Add(this.estagioDigimon);
             this.Controls.Add(this.estagio);
             this.Controls.Add(this.tipoDigimon);
@@ -177,5 +190,6 @@
         private System.Windows.Forms.Label tipo;
         private System.Windows.Forms.Label estagioDigimon;
         private System.Windows.Forms.Label estagio;
+        private System.Windows.Forms.Button levelUpBt;
     }
 }

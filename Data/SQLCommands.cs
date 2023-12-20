@@ -1,8 +1,10 @@
-﻿using System;
+﻿using BCrypt.Net;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics.Tracing;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +25,7 @@ namespace CadmoTeste.Data
                 };
                 conexao.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT especie FROM dados_base_digimon", conexao);
+                SqlCommand cmd = new SqlCommand("SELECT especie FROM dados_base_digimon ORDER BY id", conexao);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -302,7 +304,7 @@ namespace CadmoTeste.Data
             {
                 conexao.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO digimons (idUsuario, nome, especie, tipo, estagio, nivel) VALUES (@idUsuario, @nome, @especie, @tipo, @estagio, @nivel)", conexao);
+                SqlCommand cmd = new SqlCommand("INSERT INTO digimons (idUsuario, nome, especie, tipo, estagio, nivel) VALUES (@idUsuario, @nome, @especie, @tipo, @estagio, @nivel); SELECT SCOPE_IDENTITY();", conexao);
 
                 cmd.Parameters.AddWithValue("@idUsuario", Dados.idUsuario);
                 cmd.Parameters.AddWithValue("@nome", digimon[0]);
@@ -318,6 +320,7 @@ namespace CadmoTeste.Data
             }
             catch (SqlException ex)
             {
+                conexao.Close();
                 throw ex;
             }
         }
@@ -330,7 +333,7 @@ namespace CadmoTeste.Data
             {
                 conexao.Open();
 
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM usuarios WHERE usuario = '{usuario}'", conexao);
+                SqlCommand cmd = new SqlCommand($"SELECT id, salt, hashSenha, administrador FROM usuarios WHERE usuario = '{usuario}'", conexao);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 if (!reader.Read())
@@ -341,13 +344,17 @@ namespace CadmoTeste.Data
                         "Erro", "Usuário não cadastrado!"
                     };
                 }
-                else if (reader["senha"].ToString() != senha)
+                else
                 {
-                    conexao.Close();
-                    return new List<string>
+                    string hash = BCrypt.Net.BCrypt.HashPassword(senha, reader["salt"].ToString());
+                    if (reader["hashSenha"].ToString() != hash)
                     {
-                        "Erro", "Senha incorreta!"
-                    };
+                        conexao.Close();
+                        return new List<string>
+                        {
+                            "Erro", "Senha incorreta!"
+                        };
+                    }
                 }
 
                 string administrador = reader["administrador"].ToString();
@@ -394,18 +401,32 @@ namespace CadmoTeste.Data
                     };
                 }
 
+                string salt = BCrypt.Net.BCrypt.GenerateSalt();
+                string hashSenha = BCrypt.Net.BCrypt.HashPassword(senha, salt);
+
                 reader.Close();
-                cmd = new SqlCommand("INSERT INTO usuarios (usuario, senha, administrador) VALUES (@usuario, @senha, @administrador)", conexao);
+                cmd = new SqlCommand("INSERT INTO usuarios (usuario, salt, hashSenha, administrador) VALUES (@usuario, @salt, @hashSenha, @administrador)", conexao);
 
                 cmd.Parameters.AddWithValue("@usuario", usuario);
-                cmd.Parameters.AddWithValue("@senha", senha);
+                cmd.Parameters.AddWithValue("@salt", salt);
+                cmd.Parameters.AddWithValue("@hashSenha", hashSenha);
                 cmd.Parameters.AddWithValue("@administrador", "nao");
 
-                cmd.ExecuteNonQuery();
+                int numLines = cmd.ExecuteNonQuery();
 
                 conexao.Close();
 
-                return Login(usuario, senha);
+                if (numLines > 0)
+                {
+                    return Login(usuario, senha);
+                }
+                else
+                {
+                    return new List<string>
+                    {
+                        "Erro:", "Houve uma falha no cadastro!"
+                    };
+                }
             }
             catch (SqlException ex)
             {
@@ -445,6 +466,7 @@ namespace CadmoTeste.Data
             }
             catch (SqlException ex)
             {
+                conexao.Close();
                 return new List<object>
                 {
                     $"Erro: {ex.Message}"
@@ -477,9 +499,216 @@ namespace CadmoTeste.Data
             }
             catch (Exception ex)
             {
+                conexao.Close();
                 return new List<string>
                 {
                     $"Erro: {ex.Message}"
+                };
+            }
+        }
+
+        public static bool SubirNivelDigimon(int id, int nivel)
+        {
+            try
+            {
+                nivel = nivel + 1;
+                bool retorno = false;
+
+                conexao.Open();
+                SqlCommand sql = new SqlCommand($"UPDATE digimons SET nivel = {nivel} WHERE id = {id}", conexao);
+                SqlDataReader reader = sql.ExecuteReader();
+
+                if (reader.RecordsAffected > 0)
+                {
+                    retorno = true;
+                }
+
+                conexao.Close();
+                return retorno;
+            }
+            catch (Exception)
+            {
+                conexao.Close();
+                return false;
+            }
+        }
+        #endregion
+
+        #region JANELA ADICIONAR DIGIMON
+        public static bool AdicionarDigimon(string especie, string tipo, string estagio, int nivel)
+        {
+            try
+            {
+                conexao.Open();
+
+                SqlCommand sql = new SqlCommand("INSERT INTO dados_base_digimon (especie, tipo, estagio, nivelInicial) VALUES (@especie, @tipo, @estagio, @nivelInicial)", conexao);
+
+                sql.Parameters.AddWithValue("@especie", especie);
+                sql.Parameters.AddWithValue("@tipo", tipo);
+                sql.Parameters.AddWithValue("@estagio", estagio);
+                sql.Parameters.AddWithValue("@nivelInicial", nivel);
+
+                int numLines = sql.ExecuteNonQuery();
+                conexao.Close();
+
+                if (numLines > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                conexao.Close();
+                return false;
+            }
+        }
+        #endregion
+
+        #region JANELA ADICIONAR DIGIEVOLUÇÃO
+        public static bool AdicionarDigiEvolucao(string especie, string evolucao, int nivel)
+        {
+            try
+            {
+                conexao.Open();
+
+                SqlCommand sql = new SqlCommand("INSERT INTO digiEvolucoes (especie, evolucao, nivelNecessario) VALUES (@especie, @evolucao, @nivelNecessario)", conexao);
+
+                sql.Parameters.AddWithValue("@especie", especie);
+                sql.Parameters.AddWithValue("@evolucao", evolucao);
+                sql.Parameters.AddWithValue("@nivelNecessario", nivel);
+
+                int numLinhas = sql.ExecuteNonQuery();
+                conexao.Close();
+
+                if (numLinhas > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                conexao.Close();
+                return false;
+            }
+        }
+
+        public static List<string> SelecionaEspecieComboEvolucao(string especie)
+        {
+            try
+            {
+                conexao.Open();
+                SqlCommand sql = new SqlCommand($"SELECT estagio FROM dados_base_digimon WHERE especie = '{especie}'", conexao);
+                SqlDataReader reader = sql.ExecuteReader();
+                string estagio = "";
+
+                while (reader.Read())
+                {
+                    estagio = reader["estagio"].ToString();
+                }
+
+                reader.Close();
+                List<string> retorno = new List<string>();
+
+                switch (estagio)
+                {
+                    case "Novato":
+                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Campeão' OR estagio = 'Armadura'", conexao);
+                        break;
+                    case "Campeão":
+                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Ultimate'");
+                        break;
+                    case "Ultimate":
+                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Mega'");
+                        break;
+                    default:
+                        return new List<string>
+                        {
+                            "Não há possíveis evoluções para esta espécie!"
+                        };
+                }
+
+                reader = sql.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    retorno.Add(reader["especie"].ToString());
+                }
+
+                conexao.Close();
+                return retorno;
+            }
+            catch (Exception ex)
+            {
+                conexao.Close();
+                return new List<string>
+                {
+                    "Erro:", ex.Message
+                };
+            }
+        }
+
+        public static List<string> SelecionaEspecieComboDeEvolucao(string especie)
+        {
+            try
+            {
+                conexao.Open();
+                SqlCommand sql = new SqlCommand($"SELECT estagio FROM dados_base_digimon WHERE especie = '{especie}'", conexao);
+                SqlDataReader reader = sql.ExecuteReader();
+                string estagio = "";
+
+                while (reader.Read())
+                {
+                    estagio = reader["estagio"].ToString();
+                }
+
+                reader.Close();
+                List<string> retorno = new List<string>();
+
+                switch (estagio)
+                {
+                    case "Armadura":
+                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Novato'");
+                        break;
+                    case "Campeão":
+                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Novato'");
+                        break;
+                    case "Ultimate":
+                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Campeão'");
+                        break;
+                    case "Mega":
+                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Ultimate'");
+                        break;
+                    default:
+                        return new List<string>
+                        {
+                            "Não há possíveis de-evoluções para esta espécie!"
+                        };
+                }
+
+                reader = sql.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    retorno.Add(reader["especie"].ToString());
+                }
+
+                conexao.Close();
+                return retorno;
+            }
+            catch (Exception ex)
+            {
+                conexao.Close();
+                return new List<string>
+                {
+                    "Erro:", ex.Message
                 };
             }
         }

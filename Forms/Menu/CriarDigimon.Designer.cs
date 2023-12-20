@@ -84,7 +84,7 @@ namespace CadmoTeste
             // 
             // createDigimonButton
             // 
-            this.createDigimonButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createDigimonButton.Font = new System.Drawing.Font("SimSun", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createDigimonButton.Location = new System.Drawing.Point(233, 12);
             this.createDigimonButton.Name = "createDigimonButton";
             this.createDigimonButton.Size = new System.Drawing.Size(90, 99);
@@ -135,7 +135,7 @@ namespace CadmoTeste
             this.AcceptButton = this.createDigimonButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 123);
+            this.ClientSize = new System.Drawing.Size(334, 123);
             this.Controls.Add(this.nomeBox);
             this.Controls.Add(this.nome);
             this.Controls.Add(this.estagioCombo);

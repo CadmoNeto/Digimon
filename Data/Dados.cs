@@ -17,19 +17,9 @@ namespace CadmoTeste.Data
         #endregion
 
         #region ATRIBUTOS/ DADOS
-        private static string[] tipos = new string[]
-        {
-            "Réptil",
-            "Dinossauro",
-            "Ciborgue",
-            "Dragão",
-            "Besta",
-            "Sagrado"
-        };
-
         private static string[] estagios = new string[]
         {
-            "Novato", "Campeão", "Ultimate", "Mega"
+            "Novato", "Campeão", "Armadura", "Ultimate", "Mega"
         };
         #endregion
 

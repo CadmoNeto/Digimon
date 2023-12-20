@@ -26,6 +26,7 @@ namespace CadmoTeste
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
 
             especieCombo.DataSource = SQLCommands.RetornaDigimonEspecie();
             tipoCombo.DataSource = SQLCommands.RetornaDigimonTipo();

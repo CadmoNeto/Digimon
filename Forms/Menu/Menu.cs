@@ -23,11 +23,19 @@ namespace CadmoTeste.Forms
             this.Load += Menu_Load;
             this.FormClosed += Menu_FormClosed;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
 
         private void Menu_Load(object sender, EventArgs e)
         {
             this.Text = "Menu - " + usuario;
+
+            if (administrador)
+            {
+                this.Text = this.Text + " - Administrador";
+                admBt.Enabled = true;
+                admBt.Visible = true;
+            }
         }
 
         private void Menu_FormClosed(object sender, FormClosedEventArgs e)
@@ -45,6 +53,12 @@ namespace CadmoTeste.Forms
         {
             ExibirDigimon exibirDigimon = new ExibirDigimon();
             exibirDigimon.ShowDialog();
+        }
+
+        private void admBt_Click(object sender, EventArgs e)
+        {
+            Administrador admForm = new Administrador();
+            admForm.Show();
         }
     }
 }

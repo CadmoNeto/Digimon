@@ -39,7 +39,7 @@ namespace CadmoTeste
                 this.nivel = int.Parse(retorno[2]);
 
                 MessageBox.Show($"Um {this.especie} foi criado com sucesso!\nSeguem os dados do Digimon:", "Sucesso!");
-                MessageBox.Show($"Nome: {this.nome}\nEspécie: {this.especie}\nTipo: {this.tipo}\nNível: {this.nivel}\nEstágio: {this.estagio}", $"Dados de {this.especie}");
+                MessageBox.Show($"Nome: {this.nome}\nEspécie: {this.especie}\nTipo: {this.tipo}\nNível: {this.nivel}\nEstágio: {this.estagio}", $"Dados de {this.nome}");
 
                 CadmoTeste.Forms.Digimon digimon = new CadmoTeste.Forms.Digimon(SQLCommands.CriarDigimon(RetornaDados()));
                 digimon.Show();
