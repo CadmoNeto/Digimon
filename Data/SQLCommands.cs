@@ -13,6 +13,21 @@ namespace CadmoTeste.Data
     public class SQLCommands
     {
         private static SqlConnection conexao = new SqlConnection("Data Source=(localdb)\\SQLConnection;Initial Catalog=cadmoDigimon;Integrated Security=True");
+        private static string resetIdBase = "DECLARE @MaxId INT; SELECT @MaxId = MAX(id) FROM dados_base_digimon;\n" 
+            + "IF @MaxId IS NOT NULL\nBEGIN\nDBCC CHECKIDENT('dados_base_digimon', RESEED, @MaxId)\nEND\n"
+            + "ELSE\nBEGIN\nDBCC CHECKIDENT('dados_base_digimon', RESEED, 0)\nEND;\n";
+
+        private static string resetIdDigi = "DECLARE @MaxId INT; SELECT @MaxId = MAX(id) FROM digimon;\n"
+            + "IF @MaxId IS NOT NULL\nBEGIN\nDBCC CHECKIDENT('digimon', RESEED, @MaxId)\nEND\n"
+            + "ELSE\nBEGIN\nDBCC CHECKIDENT('digimon', RESEED, 0)\nEND;\n";
+
+        private static string resetIdUser = "DECLARE @MaxId INT; SELECT @MaxId = MAX(id) FROM usuario;\n"
+            + "IF @MaxId IS NOT NULL\nBEGIN\nDBCC CHECKIDENT('usuario', RESEED, @MaxId)\nEND\n"
+            + "ELSE\nBEGIN\nDBCC CHECKIDENT('usuario', RESEED, 0)\nEND;\n";
+
+        private static string resetIdEvo = "DECLARE @MaxId INT; SELECT @MaxId = MAX(id) FROM digiEvolucoes;\n"
+            + "IF @MaxId IS NOT NULL\nBEGIN\nDBCC CHECKIDENT('digiEvolucoes', RESEED, @MaxId)\nEND\n"
+            + "ELSE\nBEGIN\nDBCC CHECKIDENT('digiEvolucoes', RESEED, 0)\nEND;\n";
 
         #region RETORNOS BÁSICOS
         public static List<string> RetornaDigimonEspecie()
@@ -57,7 +72,7 @@ namespace CadmoTeste.Data
                 };
                 conexao.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT DISTINCT tipo FROM dados_base_digimon", conexao);
+                SqlCommand cmd = new SqlCommand("SELECT DISTINCT tipo FROM dados_base_digimon ORDER BY id", conexao);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -89,7 +104,7 @@ namespace CadmoTeste.Data
                 };
                 conexao.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT DISTINCT estagio FROM dados_base_digimon", conexao);
+                SqlCommand cmd = new SqlCommand("SELECT DISTINCT estagio FROM dados_base_digimon ORDER BY id", conexao);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -121,7 +136,7 @@ namespace CadmoTeste.Data
 
                 conexao.Open();
 
-                SqlCommand cmd = new SqlCommand($"SELECT tipo, estagio, nivelInicial FROM dados_base_digimon WHERE especie = '{especie}'", conexao);
+                SqlCommand cmd = new SqlCommand($"SELECT tipo, estagio, nivelInicial FROM dados_base_digimon WHERE especie = '{especie}' ORDER BY id", conexao);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while(reader.Read())
@@ -152,7 +167,7 @@ namespace CadmoTeste.Data
                 List<string> retorno = new List<string>();
                 conexao.Open();
 
-                SqlCommand cmd = new SqlCommand($"SELECT tipo, estagio FROM dados_base_digimon WHERE especie = '{especie}'", conexao);
+                SqlCommand cmd = new SqlCommand($"SELECT tipo, estagio FROM dados_base_digimon WHERE especie = '{especie}' ORDER BY id", conexao);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while(reader.Read())
@@ -184,7 +199,7 @@ namespace CadmoTeste.Data
                 List<string> primeiroEstagio = new List<string>();
                 conexao.Open();
 
-                SqlCommand cmd = new SqlCommand($"SELECT especie, estagio FROM dados_base_digimon WHERE tipo = '{tipo}'", conexao);
+                SqlCommand cmd = new SqlCommand($"SELECT especie, estagio FROM dados_base_digimon WHERE tipo = '{tipo}' ORDER BY id", conexao);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 bool primeiro = true;
@@ -229,7 +244,7 @@ namespace CadmoTeste.Data
                 List<string> retorno = new List<string>();
                 conexao.Open();
 
-                SqlCommand sql = new SqlCommand($"SELECT especie FROM dados_base_digimon WHERE tipo = '{tipo}' AND estagio = '{estagio}'", conexao);
+                SqlCommand sql = new SqlCommand($"SELECT especie FROM dados_base_digimon WHERE tipo = '{tipo}' AND estagio = '{estagio}' ORDER BY id", conexao);
                 SqlDataReader reader = sql.ExecuteReader();
 
                 while (reader.Read())
@@ -260,7 +275,7 @@ namespace CadmoTeste.Data
                 List<string> primeiroEstagio = new List<string>();
                 conexao.Open();
 
-                SqlCommand cmd = new SqlCommand($"SELECT especie, tipo FROM dados_base_digimon WHERE estagio = '{estagio}'", conexao);
+                SqlCommand cmd = new SqlCommand($"SELECT especie, tipo FROM dados_base_digimon WHERE estagio = '{estagio}' ORDER BY id", conexao);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 bool primeiro = true;
@@ -304,7 +319,7 @@ namespace CadmoTeste.Data
             {
                 conexao.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO digimons (idUsuario, nome, especie, tipo, estagio, nivel) VALUES (@idUsuario, @nome, @especie, @tipo, @estagio, @nivel); SELECT SCOPE_IDENTITY();", conexao);
+                SqlCommand cmd = new SqlCommand(resetIdDigi + "INSERT INTO digimons (idUsuario, nome, especie, tipo, estagio, nivel) VALUES (@idUsuario, @nome, @especie, @tipo, @estagio, @nivel); SELECT SCOPE_IDENTITY();", conexao);
 
                 cmd.Parameters.AddWithValue("@idUsuario", Dados.idUsuario);
                 cmd.Parameters.AddWithValue("@nome", digimon[0]);
@@ -388,7 +403,7 @@ namespace CadmoTeste.Data
             {
                 conexao.Open();
 
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM usuarios WHERE usuario = '{usuario}'", conexao);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM usuarios WHERE usuario = '{usuario}' ORDER BY id", conexao);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.Read())
@@ -405,7 +420,7 @@ namespace CadmoTeste.Data
                 string hashSenha = BCrypt.Net.BCrypt.HashPassword(senha, salt);
 
                 reader.Close();
-                cmd = new SqlCommand("INSERT INTO usuarios (usuario, salt, hashSenha, administrador) VALUES (@usuario, @salt, @hashSenha, @administrador)", conexao);
+                cmd = new SqlCommand(resetIdUser + "INSERT INTO usuarios (usuario, salt, hashSenha, administrador) VALUES (@usuario, @salt, @hashSenha, @administrador)", conexao);
 
                 cmd.Parameters.AddWithValue("@usuario", usuario);
                 cmd.Parameters.AddWithValue("@salt", salt);
@@ -451,7 +466,7 @@ namespace CadmoTeste.Data
 
                 conexao.Open();
 
-                SqlCommand cmd = new SqlCommand($"SELECT id, nome, especie FROM digimons WHERE idUsuario = {idUsuario}", conexao);
+                SqlCommand cmd = new SqlCommand($"SELECT id, nome, especie FROM digimons WHERE idUsuario = {idUsuario} ORDER BY id", conexao);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -482,7 +497,7 @@ namespace CadmoTeste.Data
             {
                 List<string> retorno = new List<string>();
                 conexao.Open();
-                SqlCommand cmd = new SqlCommand($"SELECT nome, especie, tipo, estagio, nivel FROM digimons WHERE id = {id}", conexao);
+                SqlCommand cmd = new SqlCommand($"SELECT nome, especie, tipo, estagio, nivel FROM digimons WHERE id = {id} ORDER BY id", conexao);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -541,7 +556,7 @@ namespace CadmoTeste.Data
             {
                 conexao.Open();
 
-                SqlCommand sql = new SqlCommand("INSERT INTO dados_base_digimon (especie, tipo, estagio, nivelInicial) VALUES (@especie, @tipo, @estagio, @nivelInicial)", conexao);
+                SqlCommand sql = new SqlCommand(resetIdBase + "INSERT INTO dados_base_digimon (especie, tipo, estagio, nivelInicial) VALUES (@especie, @tipo, @estagio, @nivelInicial)", conexao);
 
                 sql.Parameters.AddWithValue("@especie", especie);
                 sql.Parameters.AddWithValue("@tipo", tipo);
@@ -575,7 +590,7 @@ namespace CadmoTeste.Data
             {
                 conexao.Open();
 
-                SqlCommand sql = new SqlCommand("INSERT INTO digiEvolucoes (especie, evolucao, nivelNecessario) VALUES (@especie, @evolucao, @nivelNecessario)", conexao);
+                SqlCommand sql = new SqlCommand(resetIdEvo + "INSERT INTO digiEvolucoes (especie, evolucao, nivelNecessario) VALUES (@especie, @evolucao, @nivelNecessario)", conexao);
 
                 sql.Parameters.AddWithValue("@especie", especie);
                 sql.Parameters.AddWithValue("@evolucao", evolucao);
@@ -605,7 +620,7 @@ namespace CadmoTeste.Data
             try
             {
                 conexao.Open();
-                SqlCommand sql = new SqlCommand($"SELECT estagio FROM dados_base_digimon WHERE especie = '{especie}'", conexao);
+                SqlCommand sql = new SqlCommand($"SELECT estagio FROM dados_base_digimon WHERE especie = '{especie}' ORDER BY id", conexao);
                 SqlDataReader reader = sql.ExecuteReader();
                 string estagio = "";
 
@@ -620,13 +635,13 @@ namespace CadmoTeste.Data
                 switch (estagio)
                 {
                     case "Novato":
-                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Campeão' OR estagio = 'Armadura'", conexao);
+                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Campeão' OR estagio = 'Armadura' ORDER BY id", conexao);
                         break;
                     case "Campeão":
-                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Ultimate'");
+                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Ultimate' ORDER BY id", conexao);
                         break;
                     case "Ultimate":
-                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Mega'");
+                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Mega' ORDER BY id", conexao);
                         break;
                     default:
                         return new List<string>
@@ -660,7 +675,7 @@ namespace CadmoTeste.Data
             try
             {
                 conexao.Open();
-                SqlCommand sql = new SqlCommand($"SELECT estagio FROM dados_base_digimon WHERE especie = '{especie}'", conexao);
+                SqlCommand sql = new SqlCommand($"SELECT estagio FROM dados_base_digimon WHERE especie = '{especie}' ORDER BY id", conexao);
                 SqlDataReader reader = sql.ExecuteReader();
                 string estagio = "";
 
@@ -675,16 +690,16 @@ namespace CadmoTeste.Data
                 switch (estagio)
                 {
                     case "Armadura":
-                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Novato'");
+                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Novato' ORDER BY id", conexao);
                         break;
                     case "Campeão":
-                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Novato'");
+                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Novato' ORDER BY id", conexao);
                         break;
                     case "Ultimate":
-                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Campeão'");
+                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Campeão' ORDER BY id", conexao);
                         break;
                     case "Mega":
-                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Ultimate'");
+                        sql = new SqlCommand("SELECT especie FROM dados_base_digimon WHERE estagio = 'Ultimate' ORDER BY id", conexao);
                         break;
                     default:
                         return new List<string>

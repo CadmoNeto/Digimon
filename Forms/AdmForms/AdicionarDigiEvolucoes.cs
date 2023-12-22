@@ -21,8 +21,14 @@ namespace CadmoTeste.Forms
         {
             InitializeComponent();
 
+            especieBox.SelectedIndexChanged -= especieBox_SelectedIndexChanged;
+            evoBox.SelectedIndexChanged -= evoBox_SelectedIndexChanged;
+
             especieBox.DataSource = SQLCommands.RetornaDigimonEspecie();
             evoBox.DataSource = SQLCommands.RetornaDigimonEspecie();
+
+            especieBox.SelectedIndexChanged += especieBox_SelectedIndexChanged;
+            evoBox.SelectedIndexChanged += evoBox_SelectedIndexChanged;
         }
 
         private void especieBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -33,11 +39,11 @@ namespace CadmoTeste.Forms
                 {
                     string especie = especieBox.Text;
 
-                    evoBox.SelectedIndexChanged -= especieBox_SelectedIndexChanged;
+                    evoBox.SelectedIndexChanged -= evoBox_SelectedIndexChanged;
 
                     evoBox.DataSource = SQLCommands.SelecionaEspecieComboEvolucao(especie);
 
-                    evoBox.SelectedIndexChanged += especieBox_SelectedIndexChanged;
+                    evoBox.SelectedIndexChanged += evoBox_SelectedIndexChanged;
 
                     this.especieSelecionada = true;
                 }
@@ -60,7 +66,7 @@ namespace CadmoTeste.Forms
             {
                 if (!this.especieSelecionada)
                 {
-                    string especie = especieBox.Text;
+                    string especie = evoBox.Text;
 
                     especieBox.SelectedIndexChanged -= especieBox_SelectedIndexChanged;
 
