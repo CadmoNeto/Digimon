@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Policy;
@@ -10,6 +11,9 @@ namespace CadmoTeste.Data
 {
     public static class Dados
     {
+        #region DADOS GERAIS
+        public static Color azulDigivice = Color.FromArgb(133, 165, 214);
+        #endregion
         #region DADOS LOGIN
         public static string usuario { get; set; }
         public static bool administrador { get; set; }

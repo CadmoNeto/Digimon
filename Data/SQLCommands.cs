@@ -13,6 +13,7 @@ namespace CadmoTeste.Data
     public class SQLCommands
     {
         private static SqlConnection conexao = new SqlConnection("Data Source=(localdb)\\SQLConnection;Initial Catalog=cadmoDigimon;Integrated Security=True");
+
         private static string resetIdBase = "DECLARE @MaxId INT; SELECT @MaxId = MAX(id) FROM dados_base_digimon;\n" 
             + "IF @MaxId IS NOT NULL\nBEGIN\nDBCC CHECKIDENT('dados_base_digimon', RESEED, @MaxId)\nEND\n"
             + "ELSE\nBEGIN\nDBCC CHECKIDENT('dados_base_digimon', RESEED, 0)\nEND;\n";

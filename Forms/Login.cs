@@ -16,7 +16,6 @@ namespace CadmoTeste.Forms
         public Login()
         {
             InitializeComponent();
-            //this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
         }
 
@@ -35,7 +34,7 @@ namespace CadmoTeste.Forms
             base.WndProc(ref m);
         }
 
-        private void loginBt_Click(object sender, EventArgs e)
+        private void loginButton_Click(object sender, EventArgs e)
         {
             string usuario = usuarioText.Text;
             string senha = senhaText.Text;
@@ -48,6 +47,19 @@ namespace CadmoTeste.Forms
             }
             else
             {
+                if (checkLembrarConta.Checked)
+                {
+                    Properties.Settings.Default.usuario = usuario;
+                    Properties.Settings.Default.lembrarUsuario = true;
+                    Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    Properties.Settings.Default.usuario = string.Empty;
+                    Properties.Settings.Default.lembrarUsuario = false;
+                    Properties.Settings.Default.Save();
+                }
+
                 MessageBox.Show("Login realizado com sucesso!", "Sucesso");
                 Menu menu = new Menu();
                 menu.Show();
@@ -56,7 +68,7 @@ namespace CadmoTeste.Forms
             }
         }
 
-        private void cadastrarBt_Click(object sender, EventArgs e)
+        private void customButton2_Click(object sender, EventArgs e)
         {
             string usuario = usuarioText.Text;
             string senha = senhaText.Text;
@@ -74,6 +86,25 @@ namespace CadmoTeste.Forms
                 menu.Show();
 
                 this.Hide();
+            }
+        }
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void minimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.lembrarUsuario)
+            {
+                usuarioText.Text = Properties.Settings.Default.usuario;
+                checkLembrarConta.Checked = true;
             }
         }
     }
