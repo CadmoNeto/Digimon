@@ -22,8 +22,21 @@ namespace CadmoTeste.Forms
             InitializeComponent();
             this.Load += Menu_Load;
             this.FormClosed += Menu_FormClosed;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case 0x84:
+                    base.WndProc(ref m); ;
+                    if ((int)m.Result == 0x1)
+                        m.Result = (IntPtr)0x2;
+                    return;
+                default:
+                    break;
+            }
+            base.WndProc(ref m);
         }
 
         private void Menu_Load(object sender, EventArgs e)
@@ -45,20 +58,40 @@ namespace CadmoTeste.Forms
 
         private void criarDigimonBt_Click(object sender, EventArgs e)
         {
-            CriarDigimon criarDigimon = new CriarDigimon();
-            criarDigimon.ShowDialog();
+            
         }
 
         private void exibirDigimonBt_Click(object sender, EventArgs e)
         {
-            ExibirDigimon exibirDigimon = new ExibirDigimon();
-            exibirDigimon.ShowDialog();
+            
         }
 
         private void admBt_Click(object sender, EventArgs e)
         {
             Administrador admForm = new Administrador();
             admForm.Show();
+        }
+
+        private void customButton1_Click(object sender, EventArgs e)
+        {
+            CriarDigimon criarDigimon = new CriarDigimon();
+            criarDigimon.ShowDialog();
+        }
+
+        private void customButton2_Click(object sender, EventArgs e)
+        {
+            ExibirDigimon exibirDigimon = new ExibirDigimon();
+            exibirDigimon.ShowDialog();
+        }
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void minimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

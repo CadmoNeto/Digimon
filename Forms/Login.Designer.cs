@@ -51,6 +51,7 @@
             // 
             this.usuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.usuario.AutoSize = true;
+            this.usuario.Enabled = false;
             this.usuario.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usuario.Location = new System.Drawing.Point(281, 126);
             this.usuario.Name = "usuario";
@@ -62,6 +63,7 @@
             // 
             this.senha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.senha.AutoSize = true;
+            this.senha.Enabled = false;
             this.senha.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.senha.Location = new System.Drawing.Point(281, 180);
             this.senha.Name = "senha";

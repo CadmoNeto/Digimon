@@ -9,7 +9,7 @@ namespace CadmoTeste.Forms.Custom
     {
         private int borderSize = 0;
         private int borderRadius = 50;
-        private Color borderColor = Color.FromArgb(91, 156, 244);
+        private Color borderColor = Color.FromArgb(255, 255, 255);
 
         public int BorderSize
         {
