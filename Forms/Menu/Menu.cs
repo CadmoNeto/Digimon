@@ -41,16 +41,37 @@ namespace CadmoTeste.Forms
 
         private void Menu_Load(object sender, EventArgs e)
         {
-            this.Text = "Menu - " + usuario;
+            nome.Text = Dados.usuario;
+            id.Text = Dados.idUsuario.ToString();
+
+            panel1.Enabled = false;
+
+            foreach (Control control in panel2.Controls)
+            {
+                control.Enabled = false;
+            }
+            foreach (Control control in panel3.Controls)
+            {
+                control.Enabled = false;
+            }
+            foreach (Control control in panel4.Controls)
+            {
+                control.Enabled = false;
+            }
+            label2.Enabled = true;
+            label3.Enabled = true;
+            nomelabel.Enabled = true;
+            nome.Enabled = true;
+            idLabel.Enabled = true;
+            id.Enabled = true;
 
             if (administrador)
             {
-                this.Text = this.Text + " - Administrador";
                 admBt.Enabled = true;
                 admBt.Visible = true;
             }
         }
-
+        
         private void Menu_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
@@ -58,27 +79,11 @@ namespace CadmoTeste.Forms
 
         private void criarDigimonBt_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void exibirDigimonBt_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void admBt_Click(object sender, EventArgs e)
-        {
-            Administrador admForm = new Administrador();
-            admForm.Show();
-        }
-
-        private void customButton1_Click(object sender, EventArgs e)
-        {
             CriarDigimon criarDigimon = new CriarDigimon();
             criarDigimon.ShowDialog();
         }
 
-        private void customButton2_Click(object sender, EventArgs e)
+        private void exibirDigimonBt_Click(object sender, EventArgs e)
         {
             ExibirDigimon exibirDigimon = new ExibirDigimon();
             exibirDigimon.ShowDialog();
@@ -92,6 +97,12 @@ namespace CadmoTeste.Forms
         private void minimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void admoBt_Click(object sender, EventArgs e)
+        {
+            Administrador admForm = new Administrador();
+            admForm.Show();
         }
     }
 }

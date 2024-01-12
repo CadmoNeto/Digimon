@@ -51,8 +51,10 @@
             // 
             this.usuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.usuario.AutoSize = true;
+            this.usuario.BackColor = System.Drawing.Color.Transparent;
             this.usuario.Enabled = false;
             this.usuario.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usuario.ForeColor = System.Drawing.Color.Black;
             this.usuario.Location = new System.Drawing.Point(281, 126);
             this.usuario.Name = "usuario";
             this.usuario.Size = new System.Drawing.Size(75, 19);
@@ -63,8 +65,10 @@
             // 
             this.senha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.senha.AutoSize = true;
+            this.senha.BackColor = System.Drawing.Color.Transparent;
             this.senha.Enabled = false;
             this.senha.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.senha.ForeColor = System.Drawing.Color.Black;
             this.senha.Location = new System.Drawing.Point(281, 180);
             this.senha.Name = "senha";
             this.senha.Size = new System.Drawing.Size(64, 19);
@@ -119,7 +123,9 @@
             // 
             this.welcome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.welcome.AutoSize = true;
+            this.welcome.BackColor = System.Drawing.Color.Transparent;
             this.welcome.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcome.ForeColor = System.Drawing.Color.Black;
             this.welcome.Location = new System.Drawing.Point(305, 50);
             this.welcome.Name = "welcome";
             this.welcome.Size = new System.Drawing.Size(224, 19);
@@ -130,7 +136,9 @@
             // 
             this.welcome2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.welcome2.AutoSize = true;
+            this.welcome2.BackColor = System.Drawing.Color.Transparent;
             this.welcome2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcome2.ForeColor = System.Drawing.Color.Black;
             this.welcome2.Location = new System.Drawing.Point(281, 69);
             this.welcome2.Name = "welcome2";
             this.welcome2.Size = new System.Drawing.Size(277, 19);
@@ -141,7 +149,9 @@
             // 
             this.welcome3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.welcome3.AutoSize = true;
+            this.welcome3.BackColor = System.Drawing.Color.Transparent;
             this.welcome3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcome3.ForeColor = System.Drawing.Color.Black;
             this.welcome3.Location = new System.Drawing.Point(323, 88);
             this.welcome3.Name = "welcome3";
             this.welcome3.Size = new System.Drawing.Size(187, 19);
@@ -152,6 +162,7 @@
             // 
             this.exit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.exit.AutoSize = true;
+            this.exit.BackColor = System.Drawing.Color.Transparent;
             this.exit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.exit.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exit.Location = new System.Drawing.Point(538, 0);
@@ -165,6 +176,7 @@
             // 
             this.minimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.minimize.AutoSize = true;
+            this.minimize.BackColor = System.Drawing.Color.Transparent;
             this.minimize.Cursor = System.Windows.Forms.Cursors.Hand;
             this.minimize.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minimize.Location = new System.Drawing.Point(524, -3);
