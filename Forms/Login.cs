@@ -105,6 +105,7 @@ namespace CadmoTeste.Forms
             {
                 usuarioText.Text = Properties.Settings.Default.usuario;
                 checkLembrarConta.Checked = true;
+                senhaText.Focus();
             }
         }
     }

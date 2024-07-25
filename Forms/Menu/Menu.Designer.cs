@@ -30,10 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.exibirDigimonBt = new CadmoTeste.Forms.Custom.CustomButton();
             this.criarDigimonBt = new CadmoTeste.Forms.Custom.CustomButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.admBt = new CadmoTeste.Forms.Custom.CustomButton();
             this.id = new System.Windows.Forms.Label();
             this.nome = new System.Windows.Forms.Label();
             this.idLabel = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.minimize = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.admBt = new CadmoTeste.Forms.Custom.CustomButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -54,14 +54,26 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(180)))), ((int)(((byte)(247)))));
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.exibirDigimonBt);
             this.panel1.Controls.Add(this.criarDigimonBt);
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(280, 355);
             this.panel1.TabIndex = 3;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Enabled = false;
+            this.pictureBox1.Image = global::CadmoTeste.Properties.Resources.DigimonLogo1;
+            this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(280, 100);
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
             // 
             // exibirDigimonBt
             // 
@@ -103,21 +115,9 @@
             this.criarDigimonBt.UseVisualStyleBackColor = false;
             this.criarDigimonBt.Click += new System.EventHandler(this.criarDigimonBt_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Enabled = false;
-            this.pictureBox1.Image = global::CadmoTeste.Properties.Resources.DigimonLogo1;
-            this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(280, 100);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(180)))), ((int)(((byte)(247)))));
             this.panel2.Controls.Add(this.admBt);
             this.panel2.Controls.Add(this.id);
             this.panel2.Controls.Add(this.nome);
@@ -130,36 +130,60 @@
             this.panel2.Size = new System.Drawing.Size(159, 315);
             this.panel2.TabIndex = 4;
             // 
+            // admBt
+            // 
+            this.admBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.admBt.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.admBt.BorderRadius = 45;
+            this.admBt.BorderSize = 0;
+            this.admBt.FlatAppearance.BorderSize = 0;
+            this.admBt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.admBt.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.admBt.ForeColor = System.Drawing.Color.Black;
+            this.admBt.Location = new System.Drawing.Point(6, 203);
+            this.admBt.Name = "admBt";
+            this.admBt.Size = new System.Drawing.Size(147, 45);
+            this.admBt.TabIndex = 6;
+            this.admBt.Text = "Administrador";
+            this.admBt.TextColor = System.Drawing.Color.Black;
+            this.admBt.UseVisualStyleBackColor = true;
+            this.admBt.Visible = false;
+            this.admBt.Click += new System.EventHandler(this.admoBt_Click);
+            // 
             // id
             // 
+            this.id.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(180)))), ((int)(((byte)(247)))));
             this.id.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.id.Location = new System.Drawing.Point(92, 105);
+            this.id.Location = new System.Drawing.Point(60, 105);
             this.id.Name = "id";
-            this.id.Size = new System.Drawing.Size(64, 17);
+            this.id.Size = new System.Drawing.Size(96, 17);
             this.id.TabIndex = 5;
             this.id.Text = "id";
             // 
             // nome
             // 
+            this.nome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(180)))), ((int)(((byte)(247)))));
             this.nome.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.nome.Location = new System.Drawing.Point(92, 76);
+            this.nome.Location = new System.Drawing.Point(60, 76);
             this.nome.Name = "nome";
-            this.nome.Size = new System.Drawing.Size(64, 17);
+            this.nome.Size = new System.Drawing.Size(96, 17);
             this.nome.TabIndex = 4;
             this.nome.Text = "nome";
             // 
             // idLabel
             // 
+            this.idLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(180)))), ((int)(((byte)(247)))));
             this.idLabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.idLabel.Location = new System.Drawing.Point(3, 105);
             this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(64, 17);
+            this.idLabel.Size = new System.Drawing.Size(53, 17);
             this.idLabel.TabIndex = 3;
             this.idLabel.Text = "Id:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(180)))), ((int)(((byte)(247)))));
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(21, 40);
             this.label3.Name = "label3";
@@ -170,6 +194,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(180)))), ((int)(((byte)(247)))));
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(38, 21);
             this.label2.Name = "label2";
@@ -179,10 +204,11 @@
             // 
             // nomelabel
             // 
+            this.nomelabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(180)))), ((int)(((byte)(247)))));
             this.nomelabel.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.nomelabel.Location = new System.Drawing.Point(3, 76);
             this.nomelabel.Name = "nomelabel";
-            this.nomelabel.Size = new System.Drawing.Size(64, 17);
+            this.nomelabel.Size = new System.Drawing.Size(53, 17);
             this.nomelabel.TabIndex = 0;
             this.nomelabel.Text = "Nome:";
             // 
@@ -218,8 +244,9 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(180)))), ((int)(((byte)(247)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(168)))), ((int)(((byte)(245)))));
             this.panel3.Controls.Add(this.panel2);
+            this.panel3.Enabled = false;
             this.panel3.Location = new System.Drawing.Point(297, 17);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(165, 321);
@@ -233,31 +260,11 @@
             this.panel4.Size = new System.Drawing.Size(167, 323);
             this.panel4.TabIndex = 6;
             // 
-            // admBt
-            // 
-            this.admBt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.admBt.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.admBt.BorderRadius = 45;
-            this.admBt.BorderSize = 0;
-            this.admBt.FlatAppearance.BorderSize = 0;
-            this.admBt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.admBt.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.admBt.ForeColor = System.Drawing.Color.Black;
-            this.admBt.Location = new System.Drawing.Point(6, 203);
-            this.admBt.Name = "admBt";
-            this.admBt.Size = new System.Drawing.Size(147, 45);
-            this.admBt.TabIndex = 6;
-            this.admBt.Text = "Administrador";
-            this.admBt.TextColor = System.Drawing.Color.Black;
-            this.admBt.UseVisualStyleBackColor = true;
-            this.admBt.Visible = false;
-            this.admBt.Click += new System.EventHandler(this.admoBt_Click);
-            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(479, 355);
             this.Controls.Add(this.minimize);
             this.Controls.Add(this.exit);

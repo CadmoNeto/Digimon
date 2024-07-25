@@ -52,7 +52,6 @@
             this.usuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.usuario.AutoSize = true;
             this.usuario.BackColor = System.Drawing.Color.Transparent;
-            this.usuario.Enabled = false;
             this.usuario.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usuario.ForeColor = System.Drawing.Color.Black;
             this.usuario.Location = new System.Drawing.Point(281, 126);
@@ -66,7 +65,6 @@
             this.senha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.senha.AutoSize = true;
             this.senha.BackColor = System.Drawing.Color.Transparent;
-            this.senha.Enabled = false;
             this.senha.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.senha.ForeColor = System.Drawing.Color.Black;
             this.senha.Location = new System.Drawing.Point(281, 180);
@@ -232,9 +230,9 @@
             this.checkLembrarConta.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkLembrarConta.Location = new System.Drawing.Point(285, 231);
             this.checkLembrarConta.Name = "checkLembrarConta";
-            this.checkLembrarConta.Size = new System.Drawing.Size(84, 18);
+            this.checkLembrarConta.Size = new System.Drawing.Size(121, 18);
             this.checkLembrarConta.TabIndex = 3;
-            this.checkLembrarConta.Text = "Lembrar-me";
+            this.checkLembrarConta.Text = "Lembrar de Usuário";
             this.checkLembrarConta.UseVisualStyleBackColor = true;
             // 
             // Login

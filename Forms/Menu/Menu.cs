@@ -42,28 +42,51 @@ namespace CadmoTeste.Forms
         private void Menu_Load(object sender, EventArgs e)
         {
             nome.Text = Dados.usuario;
-            id.Text = Dados.idUsuario.ToString();
+            id.Text = $"{Dados.usuario}#{Dados.idUsuario}";
 
             panel1.Enabled = false;
+            panel2.Enabled = false;
+            panel3.Enabled = false;
+            panel4.Enabled = false;
 
-            foreach (Control control in panel2.Controls)
-            {
-                control.Enabled = false;
-            }
-            foreach (Control control in panel3.Controls)
-            {
-                control.Enabled = false;
-            }
-            foreach (Control control in panel4.Controls)
-            {
-                control.Enabled = false;
-            }
-            label2.Enabled = true;
-            label3.Enabled = true;
-            nomelabel.Enabled = true;
-            nome.Enabled = true;
-            idLabel.Enabled = true;
-            id.Enabled = true;
+            panel1.Controls.Remove(criarDigimonBt);
+            this.Controls.Add(criarDigimonBt);
+            panel1.Controls.Remove(exibirDigimonBt);
+            this.Controls.Add(exibirDigimonBt);
+
+            criarDigimonBt.BringToFront();
+            exibirDigimonBt.BringToFront();
+
+            panel2.Controls.Remove(label2);
+            this.Controls.Add(label2);
+            panel2.Controls.Remove(label3);
+            this.Controls.Add(label3);
+            panel2.Controls.Remove(nomelabel);
+            this.Controls.Add(nomelabel);
+            panel2.Controls.Remove(nome);
+            this.Controls.Add(nome);
+            panel2.Controls.Remove(idLabel);
+            this.Controls.Add(idLabel);
+            panel2.Controls.Remove(id);
+            this.Controls.Add(id);
+            panel2.Controls.Remove(admBt);
+            this.Controls.Add(admBt);
+
+            label2.BringToFront();
+            label3.BringToFront();
+            nomelabel.BringToFront();
+            nome.BringToFront();
+            id.BringToFront();
+            idLabel.BringToFront();
+            admBt.BringToFront();
+
+            label2.Location = new System.Drawing.Point(panel4.Location.X + label2.Location.X, panel4.Location.Y + label2.Location.Y);
+            label3.Location = new System.Drawing.Point(panel4.Location.X + label3.Location.X, panel4.Location.Y + label3.Location.Y);
+            nomelabel.Location = new System.Drawing.Point(panel4.Location.X + nomelabel.Location.X, panel4.Location.Y + nomelabel.Location.Y);
+            nome.Location = new System.Drawing.Point(panel4.Location.X + nome.Location.X, panel4.Location.Y + nome.Location.Y);
+            id.Location = new System.Drawing.Point(panel4.Location.X + id.Location.X, panel4.Location.Y + id.Location.Y);
+            idLabel.Location = new System.Drawing.Point(panel4.Location.X + idLabel.Location.X, panel4.Location.Y + idLabel.Location.Y);
+            admBt.Location = new System.Drawing.Point(panel4.Location.X + admBt.Location.X, panel4.Location.Y + admBt.Location.Y);
 
             if (administrador)
             {

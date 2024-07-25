@@ -23,6 +23,6 @@ C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.Forms.Menu.resou
 C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.Properties.Resources.resources
 C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.csproj.GenerateResource.cache
 C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.csproj.CoreCompileInputs.cache
-C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.csproj.CopyComplete
 C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.exe
 C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.pdb
+C:\Desenvolvimento\CadmoTeste\CadmoTeste\obj\Release\CadmoTeste.csproj.Up2Date

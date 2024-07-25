@@ -14,6 +14,7 @@ namespace CadmoTeste.Data
     {
         private static SqlConnection conexao = new SqlConnection("Data Source=(localdb)\\SQLConnection;Initial Catalog=cadmoDigimon;Integrated Security=True");
 
+        #region RESET IDS
         private static string resetIdBase = "DECLARE @MaxId INT; SELECT @MaxId = MAX(id) FROM dados_base_digimon;\n" 
             + "IF @MaxId IS NOT NULL\nBEGIN\nDBCC CHECKIDENT('dados_base_digimon', RESEED, @MaxId)\nEND\n"
             + "ELSE\nBEGIN\nDBCC CHECKIDENT('dados_base_digimon', RESEED, 0)\nEND;\n";
@@ -29,6 +30,7 @@ namespace CadmoTeste.Data
         private static string resetIdEvo = "DECLARE @MaxId INT; SELECT @MaxId = MAX(id) FROM digiEvolucoes;\n"
             + "IF @MaxId IS NOT NULL\nBEGIN\nDBCC CHECKIDENT('digiEvolucoes', RESEED, @MaxId)\nEND\n"
             + "ELSE\nBEGIN\nDBCC CHECKIDENT('digiEvolucoes', RESEED, 0)\nEND;\n";
+        #endregion
 
         #region RETORNOS BÁSICOS
         public static List<string> RetornaDigimonEspecie()
@@ -73,7 +75,7 @@ namespace CadmoTeste.Data
                 };
                 conexao.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT DISTINCT tipo FROM dados_base_digimon ORDER BY id", conexao);
+                SqlCommand cmd = new SqlCommand("SELECT DISTINCT tipo FROM dados_base_digimon ORDER BY tipo", conexao);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -105,7 +107,7 @@ namespace CadmoTeste.Data
                 };
                 conexao.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT DISTINCT estagio FROM dados_base_digimon ORDER BY id", conexao);
+                SqlCommand cmd = new SqlCommand("SELECT DISTINCT estagio FROM dados_base_digimon ORDER BY estagio", conexao);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
